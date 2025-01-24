@@ -30,7 +30,7 @@ def request_gpt(sistem_prompt, user_prompt):
     )
     return response.choices[0].message.content
 
-st.title("CV Scoring App")
+st.title("CV Scoring App for FL.ru")
 
 job_description_url = st.text_input("Job Description url")
 cv_url = st.text_input("Upload CV url")
@@ -39,6 +39,9 @@ if st.button("Score CV"):
     with st.spinner("Scoring CV..."):
         job_description = get_job_description(job_description_url)
         cv = get_candidate_info(cv_url)
+        
+        st.write(job_description)
+        st.write(cv)
 
         user_prompt = f"# ВАКАНСИЯ\n{job_description}\n\n# РЕЗЮМЕ\n{cv}"
         response = request_gpt(SYSTEM_PROMPT, user_prompt)
