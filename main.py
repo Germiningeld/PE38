@@ -1,10 +1,8 @@
 import streamlit as st
 import openai
 import os
-from dotenv import load_dotenv
 from parse_hh import get_candidate_info, get_job_description
 
-load_dotenv()
 
 openai_api_key = os.getenv("OPENAI_API_KEY")
 
@@ -39,7 +37,7 @@ if st.button("Score CV"):
     with st.spinner("Scoring CV..."):
         job_description = get_job_description(job_description_url)
         cv = get_candidate_info(cv_url)
-        
+
         st.write(job_description)
         st.write(cv)
 
